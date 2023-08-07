@@ -14,9 +14,6 @@ class ProductTest extends TestCase
     /** @test */
     public function it_can_create_a_product()
     {
-        // Mocking the image file
-        $imagePath = storage_path('test_images/test_image.jpg');
-        $file = new UploadedFile($imagePath, 'test_image.jpg', 'image/jpeg', null, true);
         $name = 'Test Product #' . random_int(0, 9999);
 
         // Create categories
@@ -27,7 +24,6 @@ class ProductTest extends TestCase
             'name' => $name,
             'description' => 'This is a test product.',
             'price' => 4.20,
-            'image' => $file,
             'categories' => [$category1, $category2], // ids of categories the product belongs to
         ];
 

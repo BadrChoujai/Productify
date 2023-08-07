@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Repositories\Category\CategoryRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class CategoriesController extends Controller
 {
@@ -27,10 +28,16 @@ class CategoriesController extends Controller
             return response()->json([
                 'data' => $this->categoryRepository->all()
             ]);
-        } catch (\Throwable $th) {
+        } catch (\Exception $e) {
+            if ($e instanceof HttpException) {
+                $statusCode = $e->getStatusCode(); // Get the HTTP status code
+            } else {
+                $statusCode = Response::HTTP_INTERNAL_SERVER_ERROR; // Default to 500 if not an HTTP exception
+            }
+
             return response()->json([
-                'message' => $th->getMessage()
-            ]);
+                'message' => $e->getMessage()
+            ], $statusCode);
         }
     }
 
@@ -44,10 +51,16 @@ class CategoriesController extends Controller
     {
         try {
             return $this->categoryRepository->create($request->get('data'));
-        } catch (\Throwable $th) {
+        } catch (\Exception $e) {
+            if ($e instanceof HttpException) {
+                $statusCode = $e->getStatusCode(); // Get the HTTP status code
+            } else {
+                $statusCode = Response::HTTP_INTERNAL_SERVER_ERROR; // Default to 500 if not an HTTP exception
+            }
+
             return response()->json([
-                'message' => $th->getMessage()
-            ]);
+                'message' => $e->getMessage()
+            ], $statusCode);
         }
     }
 
@@ -61,10 +74,16 @@ class CategoriesController extends Controller
     {
         try {
             return $this->categoryRepository->update($request->get('id'), $request->get('name'));
-        } catch (\Throwable $th) {
+        } catch (\Exception $e) {
+            if ($e instanceof HttpException) {
+                $statusCode = $e->getStatusCode(); // Get the HTTP status code
+            } else {
+                $statusCode = Response::HTTP_INTERNAL_SERVER_ERROR; // Default to 500 if not an HTTP exception
+            }
+
             return response()->json([
-                'message' => $th->getMessage()
-            ]);
+                'message' => $e->getMessage()
+            ], $statusCode);
         }
     }
 
@@ -78,10 +97,16 @@ class CategoriesController extends Controller
     {
         try {
             return $this->categoryRepository->delete($id);
-        } catch (\Throwable $th) {
+        } catch (\Exception $e) {
+            if ($e instanceof HttpException) {
+                $statusCode = $e->getStatusCode(); // Get the HTTP status code
+            } else {
+                $statusCode = Response::HTTP_INTERNAL_SERVER_ERROR; // Default to 500 if not an HTTP exception
+            }
+
             return response()->json([
-                'message' => $th->getMessage()
-            ]);
+                'message' => $e->getMessage()
+            ], $statusCode);
         }
     }
 }
