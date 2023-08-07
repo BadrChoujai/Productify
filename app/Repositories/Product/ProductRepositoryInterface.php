@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Product;
 
+use Illuminate\Http\Request;
+
 /**
  * Interface ProductRepositoryInterface
  *
@@ -14,9 +16,10 @@ interface ProductRepositoryInterface
     /**
      * Get all products.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function all();
+    public function all(Request $request);
 
     /**
      * Find a product by its ID.
