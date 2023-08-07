@@ -3,19 +3,35 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
+use App\Repositories\Product\ProductRepositoryInterface;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
+    protected $productRepository;
+
+    public function __construct(ProductRepositoryInterface $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
+
     /**
      * Display a listing of the products.
-     *
+     * 
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request  $request)
     {
-        //
+        try {
+            return response()->json([
+                'data' => $this->productRepository->all()
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -26,40 +42,46 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified products.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
-    {
-        //
+        try {
+            return $this->productRepository->create($request->get('data'));
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 
     /**
      * Update the specified products in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request)
     {
-        //
+        try {
+            return $this->productRepository->update($request->get('id'), $request->get('data'));
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 
     /**
      * Remove the specified products from storage.
-     *
-     * @param  \App\Models\Product  $product
+     * 
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        try {
+            return $this->productRepository->delete($id);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 }
