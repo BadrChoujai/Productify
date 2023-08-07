@@ -4,10 +4,18 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Repositories\Category\CategoryRepositoryInterface;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
+    protected $categoryRepository;
+
+    public function __construct(CategoryRepositoryInterface $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
+
     /**
      * Display a listing of the categories.
      *
@@ -15,7 +23,15 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            return response()->json([
+                'data' => $this->categoryRepository->all()
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -26,40 +42,46 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified categories.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
+        try {
+            return $this->categoryRepository->create($request->get('data'));
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 
     /**
      * Update the specified categories in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request)
     {
-        //
+        try {
+            return $this->categoryRepository->update($request->get('id'), $request->get('name'));
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 
     /**
      * Remove the specified categories from storage.
-     *
-     * @param  \App\Models\Category  $category
+     * 
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        try {
+            return $this->categoryRepository->delete($id);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage()
+            ]);
+        }
     }
 }

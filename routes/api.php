@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\CategoriesController;
+use App\Http\Controllers\Api\ProductsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,7 +30,7 @@ Route::delete('/products/{product}', [ProductsController::class, 'destroy'])->na
 */
 
 Route::get('/categories', [CategoriesController::class, 'index'])->name('categories.index');
-Route::post('/categories', [CategoriesController::class, 'store'])->name('categories.store');
+Route::post('/categories/store', [CategoriesController::class, 'store'])->name('categories.store');
 Route::get('/categories/{category}', [CategoriesController::class, 'show'])->name('categories.show');
 Route::put('/categories/{category}', [CategoriesController::class, 'update'])->name('categories.update');
 Route::delete('/categories/{category}', [CategoriesController::class, 'destroy'])->name('categories.destroy');
