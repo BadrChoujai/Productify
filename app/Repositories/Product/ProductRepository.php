@@ -66,6 +66,7 @@ class ProductRepository implements ProductRepositoryInterface
         $product->name = $data['name'];
         $product->description = $data['description'];
         $product->price = $data['price'];
+
         // Handle image upload
         if ($data['image']) {
             $imageName = $data['image']->getClientOriginalName();

@@ -1,64 +1,267 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<div  align="center">
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<h3  align="center">Products and categories Challenge Made with Laravel and Vuejs</h3>
+
+<p  align="center">
+
+Welcome to the README, you will be shown how to quick start the project.
+
 </p>
 
-## About Laravel
+<br />
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+</div>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<!-- TABLE OF CONTENTS -->
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<details>
 
-## Learning Laravel
+<summary>Table of Contents</summary>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<ol>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+<li>
 
-## Laravel Sponsors
+<a  href="#about-the-project">About The Project</a>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+<ul>
 
-### Premium Partners
+<li><a  href="#built-with">Built With</a></li>
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+</ul>
 
-## Contributing
+</li>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+<li>
 
-## Code of Conduct
+<a  href="#getting-started">Getting Started</a>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+<ul>
 
-## Security Vulnerabilities
+<li><a  href="#prerequisites">Prerequisites</a></li>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<li><a  href="#installations">Installation</a></li>
 
-## License
+</ul>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+</li>
+
+<li><a  href="#Used-Tools">Used Tools</a></li>
+
+<li><a  href="#Challenge-Description">Challenge Description</a></li>
+
+<li><a  href="#Contact">Contact Me</a></li>
+
+</ol>
+
+</details>
+
+<!-- ABOUT THE PROJECT -->
+
+## About The Project
+
+The goal is to create a simple app to provide the products with in relation with the categories.
+
+<p  align="right">(<a  href="#readme-top">back to top</a>)</p>
+
+### Built With
+
+This simple project was built with the Laravel framework and used RESTApi for the backend.
+
+-   [Laravel][laravel-url]
+-   VueJs
+
+<!-- GETTING STARTED -->
+
+## Getting Started
+
+### Prerequisites
+
+At first you will need to clone the git repository to your local machine, so you need to run:
+
+```sh
+
+git  clone  https://github.com/BadrChoujai/Productify.git
+
+```
+
+Generate a new application key:
+
+```
+php artisan key:generate
+```
+
+**Run Migrations and Seeders:**
+
+-   Run database migrations to create the required tables:
+
+```
+php artisan migrate
+```
+
+**Set Up Storage and Link Public Files:**
+
+-   Link the storage directory to the public directory for file uploads to work:
+
+```
+php artisan storage:link
+```
+
+And you will need to generate fake data in order to have something to test with, with this command:
+
+```bash
+
+php artisan db:seed
+
+```
+
+Finally run:
+
+```
+npm run dev
+```
+
+## Authentication
+
+There was no need for an authentication mechanism. therefore not implemented.
+
+## Products Lising
+
+To retrieve the list of products:
+
+-   Request `GET` |`/api/products` params (minPrice | null, maxPrice | null)
+
+-   with Response
+
+```json
+
+{
+
+"data": [
+
+{
+
+"id":  2,
+
+"name":  "consequatur",
+
+"description":  "Ut ab reiciendis et fuga maiores sed. Sed cumque odit eos libero. Id sequi quia sit quod. Veritatis culpa animi voluptatem dolore.",
+
+"price":  45.8,
+
+"image":  "test_image.jpg",
+
+"created_at":  "2023-08-07T10:00:30.000000Z",
+
+"updated_at":  "2023-08-07T10:00:30.000000Z",
+
+"categories":  []
+
+},
+
+...
+
+}
+
+
+
+```
+
+## Product Creation
+
+To create a product:
+
+-   Request `GET` |`/api/products/create`
+
+    with payload:
+
+```json
+{
+    "data": {
+        "name": "product name",
+
+        "description": "This is a test product.",
+
+        "price": 4.2,
+
+        "image": "test_image",
+
+        "categories": [1, 2]
+    }
+}
+```
+
+-   with Response
+
+```json
+{
+    "name": "qdwqdewd",
+    "description": "wecewcw",
+    "price": "332",
+    "image": "wallpaperflare.com_wallpaper.jpg",
+    "updated_at": "2023-08-07T17:20:24.000000Z",
+    "created_at": "2023-08-07T17:20:24.000000Z",
+    "id": 22
+}
+```
+
+### Categories
+
+To retrieve the leader-board for the robots, the results are ordered in a DESC order showing robots that have most wins:
+
+-   Request `GET` | `/api/categories`
+
+-   Response
+
+```json
+
+{
+
+"data": {
+{
+
+"id":  3,
+
+"name":  "doloribus",
+
+"parent_id":  null,
+
+"created_at":  "2023-08-07T09:57:20.000000Z",
+
+"updated_at":  "2023-08-07T09:57:20.000000Z"
+
+},
+...
+
+},
+
+}
+
+```
+
+<p  align="right">(<a  href="#readme-top">back to top</a>)</p>
+
+### Used Tools
+
+-   Used **Postman** To Test RESTApi endpoints.
+
+## Challenge Description
+
+### Features
+
+-   Ability to create a product (from web and cli)
+-   A listing products with ability to sort by price, or/and filter by a category (from web)
+
+<!-- CONTACT -->
+
+## Contact
+
+Badr CHOUJAI - [linkedin-url] - choujai.badr@gmail.com
+
+<p  align="right">(<a  href="#readme-top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+
+[linkedin-url]: https://linkedin.com/in/choujai-badr
+[laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
+[laravel-url]: https://laravel.com

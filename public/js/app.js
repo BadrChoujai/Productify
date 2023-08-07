@@ -5395,6 +5395,10 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -28576,6 +28580,123 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "bg-white" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "mx-auto max-w-full px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-16",
+        },
+        [
+          _c(
+            "button",
+            {
+              staticClass:
+                "px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-black rounded-lg hover:bg-gray-800 focus:outline-none",
+            },
+            [
+              _c("router-link", { attrs: { to: "/products/create" } }, [
+                _vm._v("\n                    New Product\n                "),
+              ]),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex justify-between items-center my-4" }, [
+            _c("h1", { staticClass: "text-2xl text-black" }, [
+              _vm._v(
+                "\n                    Products (" +
+                  _vm._s(_vm.products.length) +
+                  ")\n                "
+              ),
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "card col-lg-3 mb-4", attrs: { id: "filter" } },
+              [
+                _c("h3", { staticClass: "mt-2" }, [_vm._v("Price Range")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex-row space-x-2" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selected.minPrice,
+                        expression: "selected.minPrice",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "number", placeholder: "Min Price" },
+                    domProps: { value: _vm.selected.minPrice },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.selected, "minPrice", $event.target.value)
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selected.maxPrice,
+                        expression: "selected.maxPrice",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "number", placeholder: "Max Price" },
+                    domProps: { value: _vm.selected.maxPrice },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.selected, "maxPrice", $event.target.value)
+                      },
+                    },
+                  }),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-800 rounded-lg hover:bg-gray-800 focus:outline-none",
+                attrs: { id: "filters" },
+                on: {
+                  click: function ($event) {
+                    return _vm.loadFilteredProducts()
+                  },
+                },
+              },
+              [_vm._v("\n                    Filter\n                ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-600 rounded-lg hover:bg-gray-800 focus:outline-none",
+                attrs: { id: "filters" },
+                on: {
+                  click: function ($event) {
+                    return _vm.reset()
+                  },
+                },
+              },
+              [_vm._v("\n                    Reset filter\n                ")]
+            ),
+          ]),
+        ]
+      ),
+      _vm._v(" "),
       _vm.products && _vm.products.length
         ? _c(
             "div",
@@ -28584,137 +28705,6 @@ var render = function () {
                 "mx-auto max-w-full px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-16",
             },
             [
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-black rounded-lg hover:bg-gray-800 focus:outline-none",
-                },
-                [
-                  _c("router-link", { attrs: { to: "/products/create" } }, [
-                    _vm._v(
-                      "\n                    New Product\n                "
-                    ),
-                  ]),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "flex justify-between items-center my-4" },
-                [
-                  _c("h1", { staticClass: "text-2xl text-black" }, [
-                    _vm._v(
-                      "\n                    Products (" +
-                        _vm._s(_vm.products.length) +
-                        ")\n                "
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "card col-lg-3 mb-4",
-                      attrs: { id: "filter" },
-                    },
-                    [
-                      _c("h3", { staticClass: "mt-2" }, [
-                        _vm._v("Price Range"),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "flex-row space-x-2" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.selected.minPrice,
-                              expression: "selected.minPrice",
-                            },
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "number", placeholder: "Min Price" },
-                          domProps: { value: _vm.selected.minPrice },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.selected,
-                                "minPrice",
-                                $event.target.value
-                              )
-                            },
-                          },
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.selected.maxPrice,
-                              expression: "selected.maxPrice",
-                            },
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "number", placeholder: "Max Price" },
-                          domProps: { value: _vm.selected.maxPrice },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.selected,
-                                "maxPrice",
-                                $event.target.value
-                              )
-                            },
-                          },
-                        }),
-                      ]),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-800 rounded-lg hover:bg-gray-800 focus:outline-none",
-                      attrs: { id: "filters" },
-                      on: {
-                        click: function ($event) {
-                          return _vm.loadFilteredProducts()
-                        },
-                      },
-                    },
-                    [_vm._v("\n                    Filter\n                ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-600 rounded-lg hover:bg-gray-800 focus:outline-none",
-                      attrs: { id: "filters" },
-                      on: {
-                        click: function ($event) {
-                          return _vm.reset()
-                        },
-                      },
-                    },
-                    [
-                      _vm._v(
-                        "\n                    Reset filter\n                "
-                      ),
-                    ]
-                  ),
-                ]
-              ),
-              _vm._v(" "),
               _c(
                 "div",
                 {
@@ -28776,7 +28766,9 @@ var render = function () {
               ),
             ]
           )
-        : _c("div", [_c("Loading")], 1),
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.products == null ? _c("div", [_c("Loading")], 1) : _vm._e(),
     ]),
   ])
 }
